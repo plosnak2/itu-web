@@ -21,7 +21,7 @@ body::before {
 #login .container #login-row #login-column #login-box {
   margin-top: 50px;
   max-width: 600px;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
   border: 1px solid #9C9C9C;
   background-color: #EAEAEA;
 }
