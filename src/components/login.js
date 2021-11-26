@@ -22,7 +22,7 @@ class Login extends Component {
   }
 
   componentDidMount(){
-    auth.onAuthStateChanged(async user => {
+    auth.onAuthStateChanged( user => {
       if (user) {
         this.setState({loading: false})
         this.setState({logged: true})

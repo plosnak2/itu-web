@@ -3,7 +3,7 @@ import '../App.css';
 import logo from '../images/logo.png'
 import { Link } from "react-router-dom";
 
-class LoginPage extends Component {
+class RegisterPage extends Component {
   render(){
     return (
       <div id="login">
@@ -13,22 +13,26 @@ class LoginPage extends Component {
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
                         <div id="login-form" class="form">
-                            <h3 class="text-center text-info">Prihláste sa pre prístup do aplikácie</h3>
-                            {this.props.badlogin && (<h5 class="text-center" style={{color:"red"}}>Nesprávny mail alebo heslo</h5>)}
+                            <h3 class="text-center text-info">Vytvorte si účet</h3>
+                            {this.props.error && (<h5 class="text-center" style={{color:"red"}}>{this.props.errorMessage}</h5>)}
                             <div class="form-group">
                                 <label for="username" class="text-info">Prihlasovací mail:</label><br />
-                                <input type="text" name="username" id="username" class="form-control" onChange={this.props.onChangeMail} value={this.props.mail}/>
+                                <input type="text" name="username" id="username" class="form-control" value={this.props.mail} onChange={this.props.onChangeMail}/>
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Prihlasovacie heslo:</label><br />
-                                <input type="password" name="password" id="password" class="form-control" onChange={this.props.onChangePass} value={this.props.password}/>
+                                <input type="password" name="password" id="password" class="form-control" value={this.props.password} onChange={this.props.onChangePass}/>
                             </div>
                             <div class="form-group">
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="Prihlásiť" onClick={this.props.login}/>
+                                <label for="passwordagain" class="text-info">Potvrdenie hesla:</label><br />
+                                <input type="password" name="passwordagain" id="passwordagain" class="form-control" value={this.props.passwordAgain} onChange={this.props.onChangePassAgain}/>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" class="btn btn-info btn-md" value="Zaregistrovať" onClick={this.props.register}/>
                             </div>
                             <div id="register-link" class="text-right">
                                 <br />
-                                <Link to="/register"><p class="text-info">Zaregistrovať sa TU!</p></Link>
+                                <Link to="/"><p class="text-info">Prihlásiť sa tu!</p></Link>
                             </div>
                           </div>
                     </div>
@@ -40,4 +44,4 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+export default RegisterPage;
