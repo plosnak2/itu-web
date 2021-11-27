@@ -17,5 +17,6 @@ const firebaseConfig = {
   
   const db = firebase.firestore(firebase.initializeApp(firebaseConfig));
   const UsersRef = db.collection("users")
+  const RecipeRef = db.collection("recipe")
 
-  export { auth, UsersRef };
+  export { auth, UsersRef, RecipeRef };

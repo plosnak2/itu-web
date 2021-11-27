@@ -2,8 +2,9 @@ import './App.css';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Login from './components/login.js';
 import React, { Component } from 'react';
-import Home from './pages/home'
+//import Home from './pages/home'
 import Register from './components/register'
+import Home from './components/home'
 
 class App extends Component {
   render() {
