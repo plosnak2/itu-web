@@ -3,16 +3,14 @@ import {auth} from '../firebase'
 import {Navigate} from 'react-router-dom'
 import cookie from 'js-cookie';
 import Loader from "react-loader-spinner";
-
+import Navbar from '../static/navbar';
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state= {
-      loggedOf: false,
       user: cookie.get('mail'),
       loading: true
     }
-    this.signOut = this.signOut.bind(this);
   }
 
   componentDidMount(){
@@ -25,16 +23,6 @@ class Home extends Component {
       }
     })
   }
-
-  signOut(){
-      auth
-        .signOut()
-        .then(() => {
-            cookie.remove("mail")
-            this.setState({loggedOf: true})
-        })
-        .catch(error => alert(error.message))
-    }
 
     render(){
       if(this.state.loading){
@@ -50,17 +38,12 @@ class Home extends Component {
         )
       }
       else {
-        if(this.state.loggedOf){
-          return(
-            <Navigate to="/"/>
-          )
-        }
-  
-  
         return (
           <div>
-          <button  className="btn btn-primary" onClick={this.signOut}>Odlhasit</button>
-          <h3>{this.state.user}</h3>
+            <Navbar />
+            <div  className="container">
+              <h3>{this.state.user}</h3>
+            </div>
           </div>
         );
       }
