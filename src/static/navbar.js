@@ -49,6 +49,9 @@ class Navbar extends Component {
                 <li class="nav-item">
                     <Link to="/home"><a class="nav-link" style={{fontSize:20, color:"#0782F9" }}>Pridať recept</a></Link>
                 </li>
+                <li class="nav-item">
+                    <Link to="/shopping"><a class="nav-link" style={{fontSize:20, color:"#0782F9" }}>Nakúpné zoznamy</a></Link>
+                </li>
                 </ul>
                 <button  className="btn btn-primary" onClick={this.signOut}>Odhlásiť</button>
             </div>
