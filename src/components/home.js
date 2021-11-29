@@ -5,6 +5,8 @@ import HomePage from "../pages/homepage";
 import Loader from "react-loader-spinner";
 import Navbar from "../static/navbar";
 import Dropdown from "./dropdown";
+import {auth} from '../firebase'
+import {Navigate} from 'react-router-dom'
 
 class Home extends Component {
     state = {
@@ -14,6 +16,7 @@ class Home extends Component {
         isPopupTrue: false,
         checked: false,
         loading: true,
+        unauthorized: false
     };
 
     async get_data(filter) {
@@ -49,12 +52,21 @@ class Home extends Component {
                 }
             });
             this.setState({ Recipe: recipes });
+            this.setState({ loading: false });
         });
     }
 
     componentDidMount() {
-        this.get_data("");
-        this.setState({ loading: false });
+        auth.onAuthStateChanged( user => {
+            if (user) {
+                this.get_data("");
+            } else {
+                this.setState({unauthorized: true})
+                this.setState({loading: false})
+            }
+          })
+        
+        
         console.log(this.state.Recipe);
         /*let imageRef = firebase.storage().ref('/AjeuQGuaecKrhM4pUgb9.png');
             imageRef
@@ -81,11 +93,24 @@ class Home extends Component {
     render() {
         if (this.state.loading) {
             return (
-                <div className="vertical">
-                    <Loader type="ThreeDots" color="#0782F9" height={100} width={100} />
+                <div>
+                    <Navbar />
+                    <div className="vertical">
+                        <Loader 
+                        type="ThreeDots"
+                        color="#0782F9"
+                        height={100}
+                        width={100}
+                        />
+                    </div>
                 </div>
             );
         } else {
+            if(this.state.unauthorized){
+                return(
+                  <Navigate to="/"/>
+                )
+            }
             return (
                 <div>
                     <Navbar />

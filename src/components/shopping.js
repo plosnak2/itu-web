@@ -21,13 +21,19 @@ class Shopping extends Component {
     this.deleteItem = this.deleteItem.bind(this);
   }
 
-  async componentDidMount(){
-    await auth.onAuthStateChanged(async user => {
+  componentDidMount(){
+    auth.onAuthStateChanged(async user => {
       if (user) {
-        const mail = await cookie.get('mail')
-        const user = await UsersRef.doc(mail).get()
-        this.setState({shopping: user.data().shopping})
-        this.setState({loading: false})
+        try {
+          console.log("SHOPPING")
+          const mail = await cookie.get('mail')
+          const user = await UsersRef.doc(mail).get()
+          this.setState({shopping: user.data().shopping})
+          this.setState({loading: false})
+        } catch(e) {
+            console.log(e)
+        }
+        
       } else {
         this.setState({unauthorized: true})
         this.setState({loading: false})

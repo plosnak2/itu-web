@@ -44,7 +44,7 @@ class Navbar extends Component {
                     <Link to="/home"><a class="nav-link" style={{fontSize:20, color:"#0782F9"}}>Recepty</a></Link>
                 </li>
                 <li class="nav-item">
-                    <Link to="/home"><a class="nav-link" style={{fontSize:20, color:"#0782F9" }}>Obľúbené</a></Link>
+                    <Link to="/favourites"><a class="nav-link" style={{fontSize:20, color:"#0782F9" }}>Obľúbené</a></Link>
                 </li>
                 <li class="nav-item">
                     <Link to="/home"><a class="nav-link" style={{fontSize:20, color:"#0782F9" }}>Pridať recept</a></Link>
