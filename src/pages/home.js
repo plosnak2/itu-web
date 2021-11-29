@@ -9,7 +9,8 @@ class Home extends Component {
     super(props);
     this.state= {
       user: cookie.get('mail'),
-      loading: true
+      loading: true,
+      unathorized: false
     }
   }
 
@@ -18,7 +19,7 @@ class Home extends Component {
       if (user) {
         this.setState({loading: false})
       } else {
-        this.setState({loggedOf: true})
+        this.setState({unathorized: true})
         this.setState({loading: false})
       }
     })
@@ -38,6 +39,11 @@ class Home extends Component {
         )
       }
       else {
+        if(this.state.unathorized){
+          return(
+            <Navigate to="/"/>
+          )
+        }
         return (
           <div>
             <Navbar />
