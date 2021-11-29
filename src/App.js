@@ -7,6 +7,7 @@ import Register from './components/register'
 import Home from './components/home'
 import Shopping from './components/shopping';
 import Favourites from './components/favourites';
+import Recipe from './components/recipe';
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/shopping" element={<Shopping />} />
           <Route exact path="/favourites" element={<Favourites />} />
+          <Route exact path="/recipe" element={<Recipe />} />
         </Routes>
       </Router>
     );
