@@ -93,8 +93,16 @@ class Home extends Component {
     render() {
         if (this.state.loading) {
             return (
-                <div className="vertical">
-                    <Loader type="ThreeDots" color="#0782F9" height={100} width={100} />
+                <div>
+                    <Navbar />
+                    <div className="vertical">
+                        <Loader 
+                        type="ThreeDots"
+                        color="#0782F9"
+                        height={100}
+                        width={100}
+                        />
+                    </div>
                 </div>
             );
         } else {
