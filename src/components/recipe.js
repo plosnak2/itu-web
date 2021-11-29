@@ -4,7 +4,8 @@ import Navbar from "../static/navbar";
 import {auth, UsersRef, RecipeRef} from '../firebase'
 import cookie from 'js-cookie';
 import {Navigate} from 'react-router-dom'
-import { IoIosCart } from "react-icons/io";
+import Favourite from './favorite';
+import { CartOutline } from 'react-ionicons'
 
 class Recipe extends Component {
     constructor(props){
@@ -31,8 +32,6 @@ class Recipe extends Component {
                    array.map((item) => (item.rating[this.state.id] != null ? this.setState({rating: item.rating[this.state.id]}) : 0));
                 }
              });
-            this.setState({ loading: false });
-
         } catch(e) {
             console.log(e)
         }        
@@ -48,7 +47,7 @@ class Recipe extends Component {
                 this.unsubcribe = RecipeRef.doc(this.state.id).get().then((documentSnapshot) => {
                        if (documentSnapshot.exists) {
                           this.setState({ recipe: documentSnapshot.data() });
-                          console.log(documentSnapshot.data())
+                          this.setState({ loading: false });
                        }
                 });
             } else {
@@ -57,6 +56,7 @@ class Recipe extends Component {
             }
           })
     }
+
 
     render() {
         if (this.state.loading) {
@@ -82,9 +82,19 @@ class Recipe extends Component {
             return (
                 <div>
                     <Navbar />
-                    <div className="container">
-                        <IoIosCart style={{alignItems: 'center'}}/>
-                        <text>{this.state.rating}</text>
+                    <div className="container" style={{paddingBottom: 100, paddingTop: 30}}>
+                        
+                        <div style={{width: '80%', margin: 'auto'}}>
+                            <img style={{width: '100%', alignSelf: 'center'}} src={this.state.recipe.image}/>
+                            <h1 style={{textAlign: 'center', }}>{this.state.recipe.name}</h1>
+                            <div className="row">
+                            <text className="col-10">a</text>
+                            <div className="col-1">
+                                <Favourite id={this.state.id}/>
+                            </div>                            
+                            <CartOutline className="col-1" height="40px" width="40px"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
             );
