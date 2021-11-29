@@ -36,7 +36,10 @@ class Login extends Component {
     auth.signInWithEmailAndPassword(this.state.mail, this.state.password)
     .then((User) => {
       cookie.set("mail", this.state.mail)
-      this.setState({logged: true})
+      .then(() => {
+        this.setState({logged: true})
+      })
+      
     }).catch((error) => {
       this.setState({mail: ''})
       this.setState({password: ''})
