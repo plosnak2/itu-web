@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { IoIosStar, IoIosAlarm } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 
 class HomePage extends Component {
@@ -18,11 +19,12 @@ class HomePage extends Component {
             alt=""
           ></img>
           <div className="card-body text-center" >
-          <a className="stretched-link text-decoration-none" href="/">
+          <Link to={{ pathname: `/recipe?id=${this.props.item.id}` }}>
+            <a className="stretched-link text-decoration-none">
             <div className="card-title" style={{ alignContent: 'center' ,fontSize: 30 }}>
               {this.props.item.data.name}        
             </div>
-            </a>
+            </a></Link>
             <div className="inline align-items-center" style={{alignContent: 'space-between'}}>
             <IoIosStar style={{alignItems: 'center'}}/>
             <text className="card-text" style={{ fontSize: 20}}> {this.props.rate} </text>
