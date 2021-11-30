@@ -5,6 +5,7 @@ import {auth, UsersRef, RecipeRef} from '../firebase'
 import cookie from 'js-cookie';
 import {Navigate} from 'react-router-dom'
 import { IoIosCart } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 class Recipe extends Component {
     constructor(props){
@@ -48,7 +49,7 @@ class Recipe extends Component {
                 this.unsubcribe = RecipeRef.doc(this.state.id).get().then((documentSnapshot) => {
                        if (documentSnapshot.exists) {
                           this.setState({ recipe: documentSnapshot.data() });
-                          console.log(documentSnapshot.data())
+                          console.log(documentSnapshot.data().ingredient)
                        }
                 });
             } else {
@@ -83,7 +84,8 @@ class Recipe extends Component {
                 <div>
                     <Navbar />
                     <div className="container">
-                        <IoIosCart style={{alignItems: 'center'}}/>
+                    <Link to='/makelist'
+                    state={{ ingredient: this.state.recipe.ingredient }} ><IoIosCart style={{alignItems: 'center'}}/> </Link>
                         <text>{this.state.rating}</text>
                     </div>
                 </div>

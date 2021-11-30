@@ -1,6 +1,7 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore';
-import 'firebase/compat/auth'
+import firebase from 'firebase';
+
+import 'firebase/auth'
+import "firebase/firestore";
 
 const firebaseConfig = {  
     apiKey: "AIzaSyAbGdikQekczc39Yk2xeLwCybXdzgGkCtQ",
@@ -11,11 +12,11 @@ const firebaseConfig = {
     appId: "1:837052797351:web:e378a5833811f104812682",
     measurementId: "G-G4F5RZGZM7"
 };
-
-  firebase.initializeApp(firebaseConfig);
+ 
+  let app = firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
   
-  const db = firebase.firestore(firebase.initializeApp(firebaseConfig));
+  const db = firebase.firestore(app);
   const UsersRef = db.collection("users")
   const RecipeRef = db.collection("recipe")
   const IngredientRef = db.collection("ingredient");
