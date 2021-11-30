@@ -6,6 +6,8 @@ import cookie from 'js-cookie';
 import {Navigate} from 'react-router-dom'
 import Favourite from './favorite';
 import { CartOutline } from 'react-ionicons'
+import RatingPage from './rating';
+import Timer from './cooking'
 
 class Recipe extends Component {
     constructor(props){
@@ -17,19 +19,21 @@ class Recipe extends Component {
             id: '',
             recipe: [],
             rating: 0,
+            start_flag: false,
         };
+        this.set_start_flag = this.set_start_flag.bind(this)
     }
 
     async get_user() {
         try{
             const user = await cookie.get('mail')
             this.setState({user: user});
-            console.log(user)
-            UsersRef.doc(user).get().then((documentSnapshot) => {
+            await UsersRef.doc(user).get().then((documentSnapshot) => {
                 if (documentSnapshot.exists) {
                    let array = [];
                    array.push(documentSnapshot.data())
                    array.map((item) => (item.rating[this.state.id] != null ? this.setState({rating: item.rating[this.state.id]}) : 0));
+                   this.setState({ loading: false });
                 }
              });
         } catch(e) {
@@ -37,7 +41,7 @@ class Recipe extends Component {
         }        
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         auth.onAuthStateChanged( user => {
             if (user) {
                 const url = window.location.href;
@@ -47,7 +51,6 @@ class Recipe extends Component {
                 this.unsubcribe = RecipeRef.doc(this.state.id).get().then((documentSnapshot) => {
                        if (documentSnapshot.exists) {
                           this.setState({ recipe: documentSnapshot.data() });
-                          this.setState({ loading: false });
                        }
                 });
             } else {
@@ -57,6 +60,9 @@ class Recipe extends Component {
           })
     }
 
+    set_start_flag(){
+        this.setState({start_flag: false})
+    }
 
     render() {
         if (this.state.loading) {
@@ -79,25 +85,57 @@ class Recipe extends Component {
                   <Navigate to="/"/>
                 )
             }
-            return (
-                <div>
-                    <Navbar />
-                    <div className="container" style={{paddingBottom: 100, paddingTop: 30}}>
-                        
-                        <div style={{width: '80%', margin: 'auto'}}>
-                            <img style={{width: '100%', alignSelf: 'center'}} src={this.state.recipe.image}/>
-                            <h1 style={{textAlign: 'center', }}>{this.state.recipe.name}</h1>
-                            <div className="row">
-                            <text className="col-10">a</text>
-                            <div className="col-1">
-                                <Favourite id={this.state.id}/>
-                            </div>                            
-                            <CartOutline className="col-1" height="40px" width="40px"/>
+            else if(this.state.start_flag == false){
+                return (
+                    <div>
+                        <Navbar />
+                        <div className="container" style={{paddingBottom: 100, paddingTop: 30}}>
+                            
+                            <div style={{width: '80%', margin: 'auto'}}>
+                                <img style={{width: '100%', alignSelf: 'center'}} src={this.state.recipe.image}/>
+                                <h1 style={{textAlign: 'center', }}>{this.state.recipe.name}</h1>
+                                <div className="row">
+                                <div className="col-10">
+                                    <RatingPage actualRating={this.state.rating} user={this.state.user} id={this.state.id} rate_count={this.state.recipe.rate_count} rate={this.state.recipe.rate}/>
+                                </div>
+                                <div className="col-1">
+                                    <Favourite id={this.state.id}/>
+                                </div>                            
+                                <CartOutline className="col-1" height="40px" width="40px"/>
+                                </div>
+                                <hr/>
+                                <div style={{paddingTop: 30}}>
+                                    <h3>Ingrediencie:</h3>
+                                {
+                                    Object.entries(this.state.recipe.ingredient).map((item) => {
+                                        return (
+                                            <h4>{item[1] + " " + item[0]}</h4>
+                                        )
+                                    })
+                                }        
+                                </div>
+                                <hr/>
+                                <div>
+                                    <h3>Postup:</h3>
+                                    <text>{this.state.recipe.instructions}</text>
+                                </div>
+                                <div className="d-flex justify-content-center" style={{paddingTop: 30}}>
+                                    <button style={{backgroundColor: '#0782F9', borderRadius:100,padding:20,justifyContent: 'center', color:'white', fontSize:25,}} onClick={() => this.setState({start_flag: true})}>Začať variť</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            );
+                );
+            }
+            else
+                return(
+                    <div>
+                        <Navbar />
+                        <div className="container">
+                            <Timer instructions={this.state.recipe.instructions} time={this.state.recipe.instructions_time} home={this.set_start_flag}/>
+                        </div>
+                    </div>
+                )
         }
     }
 
