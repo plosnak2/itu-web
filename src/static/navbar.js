@@ -32,7 +32,7 @@ class Navbar extends Component {
         )
     } else {
         return(
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" style={{backgroundColor:"#0782F9"}}>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style={{backgroundColor:"#0782F9"}}>
             <div className="container">
             <a class="navbar-brand"><img src={logo} width="60" height="60" class="d-inline-block align-top" alt="" /> </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
