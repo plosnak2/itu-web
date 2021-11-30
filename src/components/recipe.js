@@ -8,6 +8,7 @@ import Favourite from './favorite';
 import { CartOutline } from 'react-ionicons'
 import RatingPage from './rating';
 import Timer from './cooking'
+import { Link } from "react-router-dom";
 
 class Recipe extends Component {
     constructor(props){
@@ -100,8 +101,10 @@ class Recipe extends Component {
                                 </div>
                                 <div className="col-1">
                                     <Favourite id={this.state.id}/>
-                                </div>                            
-                                <CartOutline className="col-1" height="40px" width="40px"/>
+                                </div>
+                                <Link to='/makelist' state={{ ingredient: this.state.recipe.ingredient }} >
+                                    <CartOutline className="col-1" height="40px" width="40px"/>
+                                </Link>
                                 </div>
                                 <hr/>
                                 <div style={{paddingTop: 30}}>
