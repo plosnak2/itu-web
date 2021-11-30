@@ -8,7 +8,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Moment from 'moment';
 import cookie from 'js-cookie';
-import { AddCircle } from 'react-ionicons'
+import { AddCircle, CloseOutline } from 'react-ionicons'
 
 export default function MakeList () {
     const navigate = useNavigate();
@@ -77,6 +77,13 @@ export default function MakeList () {
         
     }
 
+    const deleteItem = (key) => {
+        console.log(key)
+        const reducedArr = ingredient;
+        delete reducedArr[key];
+        setIngredient({...reducedArr})
+    }
+
     if(loading){
         return(
             <div>
@@ -108,17 +115,26 @@ export default function MakeList () {
                         <div style={{textAlign:"center", marginTop:30}}>
                         <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} style={{margin:"auto"}}/>
                         </div>
-                        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 20, textAlign:"center", marginTop:40 }}>
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridGap: 20, textAlign:"center", marginTop:40 }}>
                             <div><h4 style={{color: "white"}}>Druh</h4></div>
                             <div><h4 style={{color: "white"}}>Množstvo</h4></div>
+                            <div></div>
                         </div>
                         {
                             Object.entries(ingredient).map(([key, value]) => {
                                 return(
-                                    <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gridGap: 20, textAlign:"center", marginTop:20 }}>
+                                    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridGap: 20, textAlign:"center", marginTop:20 }}>
                                         <div><h5 style={{color:"#f6c445"}}>{key}</h5></div>
                                         <div><h5 style={{color:"#f6c445"}}>{value}</h5></div>
-                                        
+                                        <div>
+                                            <CloseOutline
+                                            color={'red'} 
+                                            height="50px"
+                                            width="50px"
+                                            beat
+                                            onClick={() => deleteItem(key)}
+                                            />
+                                        </div> 
                                     </div>
                                     )
                             })  

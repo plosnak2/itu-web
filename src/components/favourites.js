@@ -8,6 +8,7 @@ import Dropdown from "./dropdown";
 import {auth, UsersRef} from '../firebase'
 import {Navigate} from 'react-router-dom'
 import cookie from 'js-cookie';
+import sad from '../images/sad.png'
 
 class Favourites extends Component {
     state = {
@@ -93,23 +94,38 @@ class Favourites extends Component {
                 return(
                   <Navigate to="/"/>
                 )
-            }
-            return (
-                <div>
-                    <Navbar />
-                    <div className="container">
-                        
-                        <div className="row" style={{ paddingTop: 30, paddingBottom: 30 }}>
-                            {this.state.Recipe.map((item, index) => (
-                                <HomePage
-                                    item={item}
-                                    rate={this.rate(item.data.rate, item.data.rate_count)}
-                                />
-                            ))}
+            } else {
+                if(this.state.numOfFavs === 0){
+                    return(
+                        <div>
+                            <Navbar />
+                            <div className="container" >
+                                <div style={{textAlign:"center", marginTop:200}}>
+                                    <img src={sad} style={{width:250}} alt="Placeholder"/>
+                                    <h1 style={{color:"#0782F9"}}>Aktuálne nemáte žiadne obľúbené recepty</h1>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                }
+                return (
+                    <div>
+                        <Navbar />
+                        <div className="container">
+                            
+                            <div className="row" style={{ paddingTop: 30, paddingBottom: 30 }}>
+                                {this.state.Recipe.map((item, index) => (
+                                    <HomePage
+                                        item={item}
+                                        rate={this.rate(item.data.rate, item.data.rate_count)}
+                                    />
+                                ))}
+                            </div>
                         </div>
                     </div>
-                </div>
-            );
+                );
+            }
+            
         }
     }
 }
