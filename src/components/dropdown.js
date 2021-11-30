@@ -39,6 +39,7 @@ const Dropdown = ({set}) => {
     <Select
     i
     isMulti
+    placeholder="Vyberte ingrediencie"
     name="Ingrediencie"
     value={value}
     options={items}
