@@ -1,5 +1,6 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
+import 'firebase/compat/storage';
 import 'firebase/compat/auth'
 
 const firebaseConfig = {  
@@ -16,8 +17,10 @@ const firebaseConfig = {
   const auth = firebase.auth();
   
   const db = firebase.firestore(firebase.initializeApp(firebaseConfig));
+  const storage = firebase.storage(firebase.initializeApp(firebaseConfig));
   const UsersRef = db.collection("users")
   const RecipeRef = db.collection("recipe")
   const IngredientRef = db.collection("ingredient");
+  
 
-  export { auth, UsersRef, RecipeRef, IngredientRef };
+  export { auth, UsersRef, RecipeRef, IngredientRef, storage, firebase };
