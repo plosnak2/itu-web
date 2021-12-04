@@ -120,7 +120,7 @@ export default withFormik({
       values.instructions = props.food.instrName;
       values.instructions_time = props.food.instrTime;
       console.log('VALUES:' , values);
-      uploadRecipe(values);
+      uploadRecipe(values, values.ingredient);
       alert('Recept bol pridaný');
     },
 })(NewRecipePage);
