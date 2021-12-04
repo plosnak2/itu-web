@@ -50,7 +50,7 @@ class NewRecipe extends Component {
     }
     // function that sets state of count of tutorial time
     setCurTime(e) {
-        this.setState({ currInstrTime: e.target.value })
+        this.setState({ currInstrTime: parseInt(e.target.value) * 60 })
         console.log('currInstrTime = ', this.state.currInstrTime);
     }
 
@@ -102,7 +102,7 @@ class NewRecipe extends Component {
         let ingredient = this.state.currInstrName;
         let ingredient2 = this.state.currInstrTime;
 
-        if ((ingredient && ingredient.length > 2) && ((ingredient2 && ingredient2.length < 4))) {
+        if ((ingredient && ingredient.length > 2) && ((ingredient2 && ingredient2 < 14400))) {
             this.setState(prevState => ({
                 food: {
                     ...prevState.food,
