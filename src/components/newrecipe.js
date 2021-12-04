@@ -50,7 +50,7 @@ class NewRecipe extends Component {
     }
     // function that sets state of count of tutorial time
     setCurTime(e) {
-        this.setState({ currInstrTime: parseInt(e.target.value) * 60 })
+        this.setState({ currInstrTime: e.target.value })
         console.log('currInstrTime = ', this.state.currInstrTime);
     }
 
@@ -100,7 +100,7 @@ class NewRecipe extends Component {
     // function checking input text and add data to name and time arrays
     submitSubNameTime() {
         let ingredient = this.state.currInstrName;
-        let ingredient2 = this.state.currInstrTime;
+        let ingredient2 = this.state.currInstrTime * 60;
 
         if ((ingredient && ingredient.length > 2) && ((ingredient2 && ingredient2 < 14400))) {
             this.setState(prevState => ({
@@ -184,6 +184,10 @@ class NewRecipe extends Component {
                 onFileChange={this.onFileChange}
                 uploadFile={this.uploadFile}
                 imageGet={this.state.finalURL}
+                currInstrName={this.state.currInstrName}
+                currInstrTime={this.state.currInstrTime}
+                ingName={this.state.ingName}
+                ingCount={this.state.ingCount}
             />
         );
     }
