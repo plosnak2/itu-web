@@ -1,3 +1,8 @@
+/**
+ * Author: Jakub Zaukolec (xzauko00)
+ * This is functional component for displaying favourite recipes of current logged in user
+ * For displaying recipes was used HomePage component created by Jozef Čásar
+ */
 import { Component } from "react";
 import "../App.css";
 import { RecipeRef } from "../firebase";
@@ -22,6 +27,7 @@ class Favourites extends Component {
         numOfFavs: 0
     };
 
+    // function that gets data from database about current user´s favourite recipes
     async get_data(filter) {
         try{
             const mail = await cookie.get('mail')
@@ -65,6 +71,7 @@ class Favourites extends Component {
             })*/
     }
 
+    // function that handles rating of recipes (created by Jozef Čásar)
     rate = (rate, rate_count) => {
         if (rate_count === 0) {
             return "Nehodnotené";

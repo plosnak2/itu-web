@@ -1,3 +1,7 @@
+/**
+ * Author: Jakub Zaukolec (xzauko00)
+ * This is functional component that handled login users onto the application
+ */
 import {auth} from '../firebase'
 import React, { Component } from 'react';
 import '../App.css';
@@ -21,6 +25,7 @@ class Login extends Component {
     this.onChangePass = this.onChangePass.bind(this)
   }
 
+  // if user was already logged in it will automatically redirect him onto the home page
   componentDidMount(){
     auth.onAuthStateChanged( user => {
       if (user) {
@@ -32,6 +37,7 @@ class Login extends Component {
     })
   }
 
+  // function that handles login user
   login(){
     auth.signInWithEmailAndPassword(this.state.mail, this.state.password)
     .then((User) => {
@@ -47,10 +53,12 @@ class Login extends Component {
     });
   }
 
+  // function that changes state of mail
   onChangeMail(e) {
     this.setState({mail: e.target.value})
   }
 
+  // function that changes state of password
   onChangePass(e) {
     this.setState({password: e.target.value})
   }

@@ -1,3 +1,7 @@
+/**
+ * Author: Jakub Zaukole (xzauko00)
+ * This is graphic component for register page
+ */
 import React, { Component } from 'react';
 import '../App.css';
 import logo from '../images/logo.png'

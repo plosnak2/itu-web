@@ -1,3 +1,7 @@
+/**
+ * Author: Jakub Zaukolec (xzauko00)
+ * This is logical and graphic component for creating new shopping list
+ */
 import { useLocation } from "react-router-dom"
 import React, { useState, useEffect } from 'react';
 import {auth, UsersRef} from '../firebase'
@@ -42,6 +46,7 @@ export default function MakeList () {
         
       }, []);
     
+    // function that creates new list in database and navigate into shopping page where user can see his shopping lists
     const submit = async () =>{
         if(shop === ''){
             setIsWrong(true)
@@ -61,6 +66,7 @@ export default function MakeList () {
         }  
     }
 
+    // function that adds new item (ingredient) into map of ingredients and changes it´s state
     const add = () => {
         if(ingredient === '' || quantity === ''){
             setIsError(true)
@@ -77,6 +83,7 @@ export default function MakeList () {
         
     }
 
+    // function that deletes item from map of ingredients and update it´s state
     const deleteItem = (key) => {
         console.log(key)
         const reducedArr = ingredient;

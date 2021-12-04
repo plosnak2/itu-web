@@ -1,3 +1,7 @@
+/**
+ * Author: Jakub Zaukolec, Jozef Čásar, Slavomír Svorada
+ * This is logical component that provides routing over all pages
+ */
 import './App.css';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Login from './components/login.js';

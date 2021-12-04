@@ -1,3 +1,7 @@
+/**
+ * Author: Jakub Zaukolec (xzauko00)
+ * This is logical and graphic component for creating navigation bar (top menu) that navigates over pages and handles signing out
+ */
 import React, { Component } from 'react';
 import {auth} from '../firebase'
 import {Navigate} from 'react-router-dom'
@@ -15,6 +19,7 @@ class Navbar extends Component {
         this.signOut = this.signOut.bind(this);
       }
 
+    // function for signing out current logged in user
     signOut(){
         auth
           .signOut()

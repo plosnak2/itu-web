@@ -1,3 +1,7 @@
+/**
+ * Author: Jakub Zaukolec (xzauko00)
+ * This is logical component that handles current user´s shopping lists
+ */
 import {auth, UsersRef} from '../firebase'
 import React, { Component } from 'react';
 import '../App.css';
@@ -41,6 +45,7 @@ class Shopping extends Component {
     })
   }
 
+  // function that delete whole shopping list from database and also changes state for rerendering
   async deleteList(index){
         const reducedArr = [...this.state.shopping]
         reducedArr.splice(index, 1);
@@ -52,6 +57,7 @@ class Shopping extends Component {
         });
   }
 
+  // function that delete one item from particular shopping list from database and also changes state for rerendering
   async deleteItem(index, key){
     const reducedArr = [...this.state.shopping];
     delete reducedArr[index].items[key];

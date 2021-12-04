@@ -1,3 +1,7 @@
+/**
+ * Author: Jakub Zaukolec (xzauko00)
+ * This is graphic component for displaying current user´s shopping lists
+ */
 import React, { Component } from 'react';
 import '../App.css';
 import logo from '../images/logo.png'

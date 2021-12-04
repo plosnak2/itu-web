@@ -1,3 +1,7 @@
+/**
+ * Author: Jakub Zaukolec (xzauko00)
+ * This is logical component for registering new users
+ */
 import {auth, UsersRef} from '../firebase'
 import React, { Component } from 'react';
 import '../App.css';
@@ -35,18 +39,22 @@ class Register extends Component {
   })
   }
 
+  // function that changes state of mail
   onChangeMail(e) {
     this.setState({mail: e.target.value})
   }
 
+  // function that changes state of password
   onChangePass(e) {
     this.setState({password: e.target.value})
   }
 
+  // function that changes state of confirmation password
   onChangePassAgain(e) {
     this.setState({passwordAgain: e.target.value})
   }
  
+  // function that handles registering new user (with all possible errors that can occur)
   register(){
       if(this.state.mail === '' || this.state.password === '' || this.state.passwordAgain === ''){
         this.setState({
