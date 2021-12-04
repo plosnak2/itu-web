@@ -1,3 +1,7 @@
+/**
+ * Author: Jozef Čásar (xcasar)
+ * This is logical and graphic component that displays the filter, where user can choose the ingredients
+ */
 import React, {useState, useEffect} from 'react';
 import { IngredientRef } from '../firebase';
 import Select from 'react-select';
@@ -7,6 +11,7 @@ const Dropdown = ({set}) => {
   const [value, setValue] = useState([]);
   const [items, setItems] = useState([]);
 
+  //get all ingredients used in recipes from database
   useEffect(() => {
     (async () => {
         IngredientRef.onSnapshot((QuerySnapshot) => {
@@ -18,16 +23,10 @@ const Dropdown = ({set}) => {
             });
             setItems(ingredients_data)
         });
-       /*const ingredients = await IngredientRef.doc("7pvY5SCEhJWcJt7IBcY9").get();
-       let ingredients_data = []; 
-       console.log(ingredients.data())
-       ingredients.data().values.map(item => {
-            ingredients_data.push({label: item, value: item})
-      }) 
-       setItems(ingredients_data)*/
     })();
  }, [])
 
+ //add value to items on change in filter
  const onChange = async(values) => {
      let vals = []
     values.map(item => {vals.push(item.value)}) 

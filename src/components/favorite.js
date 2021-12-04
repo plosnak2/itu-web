@@ -1,3 +1,7 @@
+/**
+ * Author: Jozef Čásar (xcasar)
+ * This is logical and graphic component that displays if this is users favorite recipe
+ */
 import {Component} from 'react'
 import cookie from 'js-cookie';
 import {UsersRef} from '../firebase'
@@ -13,6 +17,7 @@ class Favourite extends Component {
         }
     }
 
+    //check if this recipe is user's favorite recipe
     async getUser(){
         const user = await cookie.get('mail')
         this.setState({user: user})
@@ -27,6 +32,7 @@ class Favourite extends Component {
         this.getUser();
     }
 
+    //when user click the heart, database is updated
     make_favourite = () => {
         if(this.state.flag == false){
             UsersRef.doc(this.state.user).update({favourites: firebase.firestore.FieldValue.arrayUnion(this.props.id)})
@@ -37,6 +43,7 @@ class Favourite extends Component {
         this.setState({flag: !this.state.flag})
     }
 
+    //displaying fill or out-line heart, changed when user press heart
     render(){
         if(this.state.flag == false){
             return(

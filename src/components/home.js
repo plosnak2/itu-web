@@ -1,3 +1,7 @@
+/**
+ * Author: Jozef Čásar (xcasar)
+ * This is logical component that retrieve all recipes data
+ */
 import { Component } from "react";
 import "../App.css";
 import { RecipeRef } from "../firebase";
@@ -19,6 +23,7 @@ class Home extends Component {
         unauthorized: false
     };
 
+    //getting all recipes(name, time, instructions,...) from database
     async get_data(filter) {
         RecipeRef.onSnapshot((QuerySnapshot) => {
             let recipes = [];
@@ -68,15 +73,9 @@ class Home extends Component {
         
         
         console.log(this.state.Recipe);
-        /*let imageRef = firebase.storage().ref('/AjeuQGuaecKrhM4pUgb9.png');
-            imageRef
-            .getDownloadURL()
-            .then((url) => {
-                //from url you can fetched the uploaded image easily
-                console.log(url);
-            })*/
     }
 
+    //counting recipe rate
     rate = (rate, rate_count) => {
         if (rate_count === 0) {
             return "Nehodnotené";
@@ -84,12 +83,14 @@ class Home extends Component {
         return rate / rate_count;
     };
 
+    //change recipes with changing filter
     filtered_ingredients = (filter) => {
         this.get_data(filter);
         this.render();
         this.setState({ filter: filter });
     };
 
+    //display data
     render() {
         if (this.state.loading) {
             return (

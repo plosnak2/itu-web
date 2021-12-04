@@ -1,3 +1,7 @@
+/**
+ * Author: Jozef Čásar (xcasar)
+ * This is graphic component that displays user all recipes from database
+ */
 import { Component } from "react";
 import { IoIosStar, IoIosAlarm } from "react-icons/io";
 import { Link } from "react-router-dom";
@@ -35,17 +39,6 @@ class HomePage extends Component {
          
         </div>
       </div>
-
-      /*<div className="col-md-3 col-xs-6">
-            <div className="card">
-              <img className="card-img-top" src={this.props.item.data.image} alt=""></img>
-              <div className="card-body">
-                <p className="card-text">
-                  {this.props.item.data.name}
-                </p>
-              </div>
-            </div>
-          </div>*/
     );
   }
 }

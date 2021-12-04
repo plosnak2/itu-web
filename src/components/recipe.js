@@ -1,3 +1,7 @@
+/**
+ * Author: Jozef Čásar (xcasar)
+ * This is logical and graphic component that retrieve recipe and user data connected with actual recipe
+ */
 import {Component} from 'react'
 import Loader from "react-loader-spinner";
 import Navbar from "../static/navbar";
@@ -25,6 +29,7 @@ class Recipe extends Component {
         this.set_start_flag = this.set_start_flag.bind(this)
     }
 
+    //get user data connected with recipe
     async get_user() {
         try{
             const user = await cookie.get('mail')
@@ -42,6 +47,7 @@ class Recipe extends Component {
         }        
     }
 
+    //get recipe data
     async componentDidMount() {
         auth.onAuthStateChanged( user => {
             if (user) {
@@ -61,10 +67,12 @@ class Recipe extends Component {
           })
     }
 
+    //displaying instructions with timer and gif or hole recipe data
     set_start_flag(){
         this.setState({start_flag: false})
     }
 
+    //displaying recipe and user information
     render() {
         if (this.state.loading) {
             return (
