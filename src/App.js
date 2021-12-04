@@ -13,6 +13,7 @@ import Shopping from './components/shopping';
 import Favourites from './components/favourites';
 import Recipe from './components/recipe';
 import MakeList from './components/makelist';
+import NewRecipe from './components/newrecipe';
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
           <Route exact path="/favourites" element={<Favourites />} />
           <Route exact path="/recipe" element={<Recipe />} />
           <Route exact path="/makelist" element={<MakeList />} />
+          <Route exact path="/newrecipe" element={<NewRecipe />} />
         </Routes>
       </Router>
     );

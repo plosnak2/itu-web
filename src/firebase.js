@@ -2,6 +2,7 @@ import firebase from 'firebase';
 
 import 'firebase/auth'
 import "firebase/firestore";
+import 'firebase/storage';
 
 const firebaseConfig = {  
     apiKey: "AIzaSyAbGdikQekczc39Yk2xeLwCybXdzgGkCtQ",
@@ -17,8 +18,9 @@ const firebaseConfig = {
   const auth = firebase.auth();
   
   const db = firebase.firestore(app);
+  const storage = firebase.storage(app);
   const UsersRef = db.collection("users")
   const RecipeRef = db.collection("recipe")
   const IngredientRef = db.collection("ingredient");
 
-  export { auth, UsersRef, RecipeRef, IngredientRef };
+  export { auth, UsersRef, RecipeRef, IngredientRef, storage, firebase };
