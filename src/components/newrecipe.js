@@ -127,7 +127,7 @@ class NewRecipe extends Component {
         } else if (ingredient && ingredient.length < 3) {
             alert('Dĺžka postupu musí byť väčšia ako 2 znaky');
         } else {
-            alert('Dĺžka času prípravy musí byť najviac trojciferná hodnota');
+            alert('Dĺžka času prípravy musí byť zadaná (najviac 240 minút)');
         }
     }
 
