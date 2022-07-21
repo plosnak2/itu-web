@@ -1,6 +1,6 @@
 # Web application for cooking - ITU
-Authors: Jakub Zaukolec, Slavomír Svorada, Jozef Čásar
-Link for github repo for mobile version of this app - https://github.com/plosnak2/itu (better explained)
+- Authors: Jakub Zaukolec, Slavomír Svorada, Jozef Čásar
+- Link for github repo for mobile version of this app - https://github.com/plosnak2/itu (better explained)
 
 # Screenshots
 ## Main page - list of recipes
