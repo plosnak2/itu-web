@@ -12,3 +12,7 @@ Link for github repo for mobile version of this app - https://github.com/plosnak
 
 ## Shopping lists
 <img src="https://github.com/plosnak2/itu-web/blob/master/screenshots/Screenshot2.png?raw=true" width="100%" height="100%">
+
+# Technologies
+- React
+- Firebase
